@@ -36,3 +36,10 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Allure Report ###
+allure-report/
+allure-results/
+
+### Confidential Data ###
+data.properties

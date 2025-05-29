@@ -4,66 +4,99 @@ import data.Constants;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utils.Wait;
+
 public class LoginPage extends BasePage {
-    private static final Logger log = LogManager.getLogger(LoginPage.class);
+    Logger log = LogManager.getLogger(LoginPage.class);
 
     @FindBy(xpath = "//input[@id='email']")
-    private WebElement emailAddress;
+    private WebElement emailAddressField;
 
     @FindBy(xpath = "//*[@id=\"pass\"]")
-    private WebElement insertPassword;
+    private WebElement passwordField;
 
     @FindBy(xpath = "(//button[@id='send2'])[1]")
     private  WebElement signInButton;
 
     @FindBy(xpath = "//*[@id='pass']")
-    private WebElement invalidPassword;
+    private WebElement invalidPasswordMessage;
+
+    @FindBy(xpath = "//span[@class='base']")
+    private WebElement successfulLoginMessage;
+
+    @FindBy(xpath = "//div[@data-ui-id='message-error']")
+    private WebElement emptyFieldsError;
+
+    @FindBy(xpath = "//div[@id='email-error']")
+    private WebElement emptyEmailFieldError;
+
+    @FindBy(xpath = "//div[@id='pass-error']")
+    private WebElement emptyPasswordFieldError;
+
+    @FindBy(xpath = "//div[@data-ui-id='message-error']")
+    private WebElement invalidLoginMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void sendEmailAddress() {
+        Wait.waitUntilElementIsVisible(emailAddressField, driver);
         log.info("Inserting email address.");
-        emailAddress.sendKeys(Constants.LOGIN_NAME);
+        emailAddressField.sendKeys(Constants.LOGIN_NAME);
     }
 
+
+
     public void sendPassword() {
-        insertPassword.sendKeys(Constants.LOGIN_PASSWORD);
+        Wait.waitUntilElementIsVisible(passwordField, driver);
+        passwordField.sendKeys(Constants.LOGIN_PASSWORD);
         log.info("Inserting password");
     }
 
     public void clickOnSignInButton() {
+        Wait.waitUntilElementIsClickable(signInButton, driver);
         signInButton.click();
         log.info("Clicking on sign in button");
     }
 
     public String successfulLoginConfirmation() {
-        return driver.findElement(By.xpath("//span[@class='base']")).getText();
+        Wait.waitUntilElementIsVisible(successfulLoginMessage, driver);
+        log.info("Login confirmed!");
+        return successfulLoginMessage.getText();
     }
 
     public String emptyFieldsLogin() {
-        return driver.findElement(By.xpath("//div[@data-ui-id='message-error']")).getText();
+        Wait.waitUntilElementIsVisible(emptyFieldsError, driver);
+        log.info("Error!");
+        return emptyFieldsError.getText();
     }
 
     public String emptyEmailError() {
-        return driver.findElement(By.xpath("//div[@id='email-error']")).getText();
+        Wait.waitUntilElementIsVisible(emptyEmailFieldError, driver);
+        log.info("Error!");
+        return emptyEmailFieldError.getText();
     }
 
     public String emptyPasswordError() {
-        return driver.findElement(By.xpath("//div[@id='pass-error']")).getText();
+        Wait.waitUntilElementIsVisible(emptyPasswordFieldError, driver);
+        log.info("Error!");
+        return emptyPasswordFieldError.getText();
     }
 
     public void sendInvalidPassword() {
-        invalidPassword.sendKeys(Constants.INVALID_PASSWORD);
+        log.info("Sending invalid password.");
+        invalidPasswordMessage.sendKeys(Constants.INVALID_PASSWORD);
     }
 
     public String invalidLoginAttempt() {
-        return driver.findElement(By.xpath("//div[@data-ui-id='message-error']")).getText();
+       Wait.waitUntilElementIsVisible(invalidLoginMessage, driver);
+        log.info("Error!");
+        return invalidLoginMessage.getText();
     }
 }

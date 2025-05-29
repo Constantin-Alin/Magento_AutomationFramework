@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import page.objects.HomePage;
 import page.objects.LoginPage;
-import utils.Scroll;
 
 public class ColorsTest extends BaseTest{
 

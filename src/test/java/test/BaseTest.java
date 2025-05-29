@@ -8,8 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import wait.Wait;
-
 
 public class BaseTest {
     public WebDriver driver;
@@ -18,7 +16,7 @@ public class BaseTest {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(Constants.URL);
-        Wait.waitInSeconds(3);
+//        Wait.waitInSeconds(3);
     }
 
     @Test

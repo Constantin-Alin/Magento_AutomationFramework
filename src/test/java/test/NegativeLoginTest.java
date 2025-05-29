@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 import page.objects.HomePage;
 import page.objects.LoginPage;
 
-import wait.Wait;
-
 public class NegativeLoginTest extends BaseTest{
 
     @Test
@@ -19,7 +17,6 @@ public class NegativeLoginTest extends BaseTest{
         homePage.clickOnDisagreeButton();
         homePage.clickOnLoginLink();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         String actualMessage = loginPage.emptyFieldsLogin();
         String expectedMessage = Constants.MISSING_FIELDS_ERROR;
         Assert.assertEquals(actualMessage, expectedMessage);
@@ -32,9 +29,7 @@ public class NegativeLoginTest extends BaseTest{
         homePage.clickOnDisagreeButton();
         homePage.clickOnLoginLink();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         String actualMessage = loginPage.emptyEmailError();
         String expectedMessage = Constants.PASSWORD_EMAIL_ERROR;
         Assert.assertEquals(actualMessage, expectedMessage);
@@ -47,9 +42,7 @@ public class NegativeLoginTest extends BaseTest{
         homePage.clickOnDisagreeButton();
         homePage.clickOnLoginLink();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         String actualMessage = loginPage.emptyPasswordError();
         String expectedMessage = Constants.PASSWORD_EMAIL_ERROR;
         Assert.assertEquals(actualMessage, expectedMessage);
@@ -62,10 +55,8 @@ public class NegativeLoginTest extends BaseTest{
         homePage.clickOnDisagreeButton();
         homePage.clickOnLoginLink();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         loginPage.sendEmailAddress();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         String actualMessage = loginPage.emptyPasswordError();
         String expectedMessage = Constants.PASSWORD_EMAIL_ERROR;
         Assert.assertEquals(actualMessage, expectedMessage);
@@ -78,10 +69,8 @@ public class NegativeLoginTest extends BaseTest{
         homePage.clickOnDisagreeButton();
         homePage.clickOnLoginLink();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         loginPage.sendPassword();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         String actualMessage = loginPage.emptyEmailError();
         String expectedMessage = Constants.PASSWORD_EMAIL_ERROR;
         Assert.assertEquals(actualMessage, expectedMessage);
@@ -96,7 +85,6 @@ public class NegativeLoginTest extends BaseTest{
         loginPage.sendEmailAddress();
         loginPage.sendInvalidPassword();
         loginPage.clickOnSignInButton();
-        Wait.waitInSeconds(1);
         String actualMessage = loginPage.invalidLoginAttempt();
         String expectedMessage = Constants.INVALID_LOGIN_ERROR;
         Assert.assertEquals(actualMessage, expectedMessage);

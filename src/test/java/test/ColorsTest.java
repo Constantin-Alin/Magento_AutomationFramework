@@ -7,8 +7,7 @@ import org.testng.annotations.Test;
 
 import page.objects.HomePage;
 import page.objects.LoginPage;
-
-import wait.Wait;
+import utils.Scroll;
 
 public class ColorsTest extends BaseTest{
 
@@ -59,7 +58,6 @@ public class ColorsTest extends BaseTest{
         String expectedMessage = Constants.LOGIN_CONFIRMATION;
         Assert.assertEquals(actualMessage, expectedMessage);
         String actualCartColor = homePage.findCartBackgroundColor();
-        Wait.waitInSeconds(2);
         String actualTextColor = homePage.findCartTextColor();
         Assert.assertEquals(actualTextColor, Constants.WHITE_COLOR);
         Assert.assertEquals(actualCartColor, Constants.BLUE_COLOR);

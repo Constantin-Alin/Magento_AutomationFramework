@@ -8,8 +8,6 @@ import org.testng.annotations.Test;
 import page.objects.CreateAccountPage;
 import page.objects.HomePage;
 
-import wait.Wait;
-
 public class CreateAccountTest extends BaseTest{
 
     @Test
@@ -24,8 +22,7 @@ public class CreateAccountTest extends BaseTest{
         createAccountPage.enterPassword();
         createAccountPage.clickOnCreateAccountButton();
         String expectedMessage = Constants.CREATE_ACCOUNT_THANKYOU_MESSAGE;
-        Wait.waitInSeconds(2);
-        String actualMessage = createAccountPage.successfulAccountCreationMessage();
+        String actualMessage = createAccountPage.getSuccessfulAccountCreationMessage();
         Assert.assertEquals(actualMessage, expectedMessage);
     }
 }

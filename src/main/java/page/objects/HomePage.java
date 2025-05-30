@@ -42,6 +42,15 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "(//span[contains(text(), 'Add to Cart')])[1]")
     private WebElement cartTextColor;
 
+    @FindBy(xpath = "(//span[@class='action nav-toggle'])")
+    private WebElement hamburgerHelperMenu;
+
+    @FindBy(xpath = "(/html/body/div[3]/div/div/div[3]/a)")
+    private WebElement accountMenu;
+
+    @FindBy(xpath = "(//*[@id=\"store.links\"]/ul/li[2]/a)")
+    private WebElement signInLink;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -57,6 +66,24 @@ public class HomePage extends BasePage {
         Wait.waitUntilElementIsClickable(loginLink, driver);
         loginLink.click();
         log.info("Clicking on login link");
+    }
+
+    public void tapOnHamburgerMenu() {
+        Wait.waitUntilElementIsClickable(hamburgerHelperMenu, driver);
+        hamburgerHelperMenu.click();
+        log.info("Tapping on Menu button");
+    }
+
+    public void tapOnAccountMenu() {
+        Wait.waitUntilElementIsClickable(accountMenu, driver);
+        accountMenu.click();
+        log.info("Tapping on account section");
+    }
+
+    public void tapOnSignInLink() {
+        Wait.waitUntilElementIsClickable(signInLink, driver);
+        signInLink.click();
+        log.info("Tapping on sign in link");
     }
 
     public void clickOnMensWearSection() {

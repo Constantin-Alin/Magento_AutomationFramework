@@ -31,7 +31,9 @@ public class LoginTest extends BaseTest {
     public void mobileLoginTest(){
         HomePage homePage = new HomePage(driver);
         homePage.clickOnDisagreeButton();
-        homePage.clickOnLoginLink();
+        homePage.tapOnHamburgerMenu();
+        homePage.tapOnAccountMenu();
+        homePage.tapOnSignInLink();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.sendEmailAddress();
         loginPage.sendPassword();
@@ -40,4 +42,7 @@ public class LoginTest extends BaseTest {
         String expectedMessage = Constants.LOGIN_CONFIRMATION;
         Assert.assertEquals(actualMessage, expectedMessage);
     }
+
+    // TODO: repara metoda de mobile din test
+    // TODO: end to end test in mobile
 }

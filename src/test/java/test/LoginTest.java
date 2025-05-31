@@ -42,7 +42,4 @@ public class LoginTest extends BaseTest {
         String expectedMessage = Constants.LOGIN_CONFIRMATION;
         Assert.assertEquals(actualMessage, expectedMessage);
     }
-
-    // TODO: repara metoda de mobile din test
-    // TODO: end to end test in mobile
 }

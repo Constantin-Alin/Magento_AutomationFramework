@@ -12,6 +12,8 @@ import org.openqa.selenium.support.FindBy;
 import utils.Scroll;
 import utils.Wait;
 
+import java.util.List;
+
 public class HomePage extends BasePage {
     Logger log = LogManager.getLogger(HomePage.class);
 
@@ -45,15 +47,27 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "(//span[@class='action nav-toggle'])")
     private WebElement hamburgerHelperMenu;
 
-    @FindBy(xpath = "(/html/body/div[3]/div/div/div[3]/a)")
+    @FindBy(xpath = "(//a[contains(text(), 'Account')])[2]")
     private WebElement accountMenu;
 
     @FindBy(xpath = "(//*[@id=\"store.links\"]/ul/li[2]/a)")
     private WebElement signInLink;
 
+    @FindBy(xpath = "//a[contains(text(), 'All Men')]")
+    private WebElement allMensWear;
+
+    @FindBy(css = ".level0.ui-menu-item")
+    private List<WebElement> navigationList;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+
+    private void tapOnNavigationListElement(int position) {
+//        Wait.waitUntilElementIsVisible(navigationList.get(position - 1), driver);
+        Wait.waitInSeconds(2);
+        navigationList.get(position - 1).click();
     }
 
     public void clickOnDisagreeButton() {
@@ -74,8 +88,18 @@ public class HomePage extends BasePage {
         log.info("Tapping on Menu button");
     }
 
+    public void tapOnMensSectionMenu() {
+        tapOnNavigationListElement(3);
+        log.info("Tapping on menswear section");
+    }
+
+    public void tapOnAllMensSection() {
+        Wait.waitUntilElementIsVisible(allMensWear, driver);
+        allMensWear.click();
+    }
+
     public void tapOnAccountMenu() {
-        Wait.waitUntilElementIsClickable(accountMenu, driver);
+        Wait.waitUntilElementIsVisible(accountMenu, driver);
         accountMenu.click();
         log.info("Tapping on account section");
     }
